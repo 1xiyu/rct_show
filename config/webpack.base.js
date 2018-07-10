@@ -6,11 +6,10 @@ const plugins = util.getPlugins();
 const rules = util.getRules();
 
 module.exports = {
-    entry: path.join(commonPath, 'src/app.jsx'),
-    mode: 'development',
+    entry: [path.join(commonPath, 'src/app.jsx')],
     output: {
         filename: 'bundle.js',
-        path: path.join(commonPath, 'dist')
+        path: path.join(commonPath, 'dist') 
     },
     module: { rules },
     resolve: {

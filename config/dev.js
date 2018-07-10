@@ -1,26 +1,21 @@
 const express = require('express');
 const webpack = require('webpack');
-const config = require('./webpack.base');
+const config = require('./webpack.dev');
 const  app = express();
 const compiler = webpack(config);
-// // for highly stable resources
-// app.use('/static', express.static(staticDir));
+const path = require('path');
 
-// // app.use(favicon(path.join(__dirname, '../favicon.ico')));
-
-// // handle fallback for HTML5 history API
-// // app.use(require('connect-history-api-fallback')());
-
-// // serve webpack bundle output
-app.use(require('webpack-dev-middleware')(compiler, {
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath
-}));
+  quiet: true
+});
 
-// enable hot-reload and state-preserving
-// compilation error display
+// serve webpack bundle output
+app.use(devMiddleware);
+
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.listen(9000, '127.0.0.1', function(err) {
-  err && console.log(err);
-});
+app.use(express.static('../template'));
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
+

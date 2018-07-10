@@ -21,9 +21,10 @@ function getPlugins() {
     ];
     plugins.push(
         new HtmlWebpackPlugin({
-        template: path.join(commonPath, 'template/index.html')
-      })
+            template: path.join(commonPath, 'template/index.html')
+        })
     );
+    return plugins;
 }
 
 /**
@@ -35,6 +36,16 @@ function getRules() {
             test: /\.(js|jsx)$/, 
             exclude: /node_modules/, 
             loader: 'babel-loader'
+        },
+        {
+            test: /\.(less|css)$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "less-loader" // compiles Less to CSS
+            }]
         }
     ];
     return rules;

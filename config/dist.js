@@ -1,4 +1,4 @@
-const config  = require( './webpack.base' );
+const config  = require( './webpack.build' );
 const webpack = require( 'webpack' );
 const util = require( './util' );
 webpack( config, function( err, stats ) {
