@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { TabBar } from 'antd-mobile';
 import ListViewExample from './ListViewExample';
 

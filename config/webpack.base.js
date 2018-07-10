@@ -15,7 +15,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-          REDUX: path.join(commonPath, 'src/redux')
+          REDUX: path.join(commonPath, 'src/redux'),
+          '$src': path.join(commonPath, 'src')
         }
     },
     plugins

@@ -10,6 +10,4 @@ config.entry.push('webpack-hot-middleware/client');
 
 config.devtool = 'cheap-module-eval-source-map';
 
-const process = require('process');
-
 module.exports = config;
