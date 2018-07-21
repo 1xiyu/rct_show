@@ -9,14 +9,17 @@ module.exports = {
     entry: [path.join(commonPath, 'src/app.jsx')],
     output: {
         filename: 'bundle.js',
-        path: path.join(commonPath, 'dist') 
+        path: path.join(commonPath, 'dist')
     },
     module: { rules },
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-          REDUX: path.join(commonPath, 'src/redux'),
-          '$src': path.join(commonPath, 'src')
+          '$src': path.join(commonPath, 'src'),
+          '$views': path.join(commonPath, 'src/views'),
+          '$redux': path.join(commonPath, 'src/redux'),
+          '$dao': path.join(commonPath, 'src/dao'),
+          '$utils': path.join(commonPath, 'src/utils')
         }
     },
     plugins

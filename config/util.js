@@ -21,7 +21,9 @@ function getPlugins() {
     ];
     plugins.push(
         new HtmlWebpackPlugin({
-            template: path.join(commonPath, 'template/index.html')
+            template: path.join(commonPath, 'template/index.html'),
+            inject: true,
+            filename: '../dist/index.html'
         })
     );
     return plugins;

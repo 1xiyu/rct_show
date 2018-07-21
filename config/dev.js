@@ -5,24 +5,25 @@ const  app = express();
 const compiler = webpack(config);
 const path = require('path');
 const commonPath = path.resolve(__dirname, '..');
+const PORT = 3000;
+const BUILDINFO = ` listening on port ${PORT} ~`;
 
-// TODO:// why noInfo no useful ?
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  quiet: true
+  // like pre version noInfo
+  logLevel: 'silent',
+  publicPath: config.output.publicPath 
 });
+
+// for handle fallback 
+app.use(require('connect-history-api-fallback')());
 
 // serve webpack bundle output
 app.use(devMiddleware);
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use(express.static('../template'));
+// for mock data
+app.use('/static', express.static(path.resolve(commonPath, 'src/mock')));
 
-// resolve browserHistory
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(commonPath, 'dist', 'index.html'))
-})
-
-app.listen(3000, () => console.log('React app listening on port 3000!'));
+app.listen(PORT, () => console.log(BUILDINFO));
 
